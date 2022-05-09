@@ -1,0 +1,11 @@
+.content {
+    border: 3px groove #a7a9aa;
+    padding: 10px;
+}
+
+.button {
+    width: 150px;
+    border: 2px solid gray !important;
+    color : #165079 !important;
+    font-weight: 400;
+}

@@ -1,0 +1,26 @@
+.table-data {
+    padding: 10px;
+}
+
+.title {
+    color: #5e85a5;
+}
+
+.main-heading {
+    background-color: rgb(136, 138, 138);
+    color: white;
+}
+
+.heading {
+    background-color: rgb(196, 223, 224);
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+   /* border: 0.5px solid #000000; */
+   border: 0.5px solid rgb(142, 142, 245);
+}

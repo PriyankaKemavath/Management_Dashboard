@@ -1,0 +1,17 @@
+.title {
+    color: #165079;
+    margin-bottom: 30px;
+}
+
+.subtrack {
+    padding: 25px;
+}
+
+.content {
+    border: 2px solid grey;
+}
+
+.button {
+    width: 200px;
+    font-weight: 400 !important;
+}
