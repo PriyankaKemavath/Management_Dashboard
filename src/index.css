@@ -27,3 +27,7 @@ code {
   width: 100%;
   color: whitesmoke;
 }
+
+input[type=checkbox].hidden{
+  opacity: 0;
+}

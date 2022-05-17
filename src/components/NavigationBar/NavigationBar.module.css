@@ -9,3 +9,10 @@ li {
 nav {
     background-color: #165079 !important;
 }
+
+.img-link {
+    width: 50px;
+    transform: scale(5);
+    margin-left: 36px;
+    margin-top: -22px;
+}

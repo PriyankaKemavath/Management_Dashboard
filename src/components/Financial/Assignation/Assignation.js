@@ -33,14 +33,12 @@ const Assignation = ({ year }) => {
     return (
         <div className={`container ${classes.content}`}>
             <div className="container row d-flex align-items-center">
-                <div className="col-md-4">
-                    <button className={`btn btn-light ${classes.button}`} onClick={offshoreHandler}>OFFSHORE</button>
-                </div>
-                <div className="col-md-4">
-                    <button className={`btn btn-light ${classes.button}`} onClick={onsiteHandler}>ONSITE</button>
-                </div>
-                <div className="col-md-4">
-                    <button className={`btn btn-light ${classes.button}`} onClick={bothHandler}>BOTH</button>
+                <div className="col-md-12">
+                    <div className="btn-group">
+                    <button className={`btn btn-light ${classes.button} ${offshoreTableShow && classes.active}`} onClick={offshoreHandler}>OFFSHORE</button>
+                    <button className={`btn btn-light ${classes.button} ${onsiteTableShow && classes.active}`} onClick={onsiteHandler}>ONSITE</button>
+                    <button className={`btn btn-light ${classes.button} ${bothTableShow && classes.active}`} onClick={bothHandler}>BOTH</button>
+                    </div>
                 </div>
             </div>
             {offshoreTableShow && <FinancialTable assignationName={assignationName} year={year} />}
