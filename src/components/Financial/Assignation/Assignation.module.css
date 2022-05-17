@@ -4,8 +4,13 @@
 }
 
 .button {
-    width: 150px;
+    width: 300px;
     border: 2px solid gray !important;
     color : #165079 !important;
     font-weight: 400;
+}
+
+.active {
+    background-color: #056fcc !important;
+    color: white !important;
 }
