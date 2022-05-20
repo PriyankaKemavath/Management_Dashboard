@@ -1,13 +1,28 @@
+import { useState } from 'react';
+import ResourceModal from '../ResourceModal/ResourceModal';
+
 import classes from './FinancialTable.module.css';
 
-const FinancialTable = ({ assignationName, year }) => {
+const FinancialTable = ({ assignationName, year, offshoreTableShow, onsiteTableShow, bothTableShow }) => {
+    const [resourceShow, setResourceShow] = useState(false);
+
     const currentYear = year.slice(2,4);
     const financialYear = year.slice(2,7);
+
+    const checkResourceHandler = () => {
+        setResourceShow(true);
+    };
+
+    const resourceCloseHandler = () => {
+        setResourceShow(false);
+    };
 
     return (
         <div className={`container row ${classes['table-data']}`}>
             <div className="col-md-12">
                 <h5 className={classes.title}>{assignationName} Financials: FY {year}</h5>
+                <a className={classes.link} onClick={checkResourceHandler}>Check Resource</a>
+                <ResourceModal resourceShow={resourceShow} resourceCloseHandler={resourceCloseHandler} offshoreTableShow={offshoreTableShow} onsiteTableShow={onsiteTableShow} bothTableShow={bothTableShow} />
                 <table className={`table table-sm table-bordered table-striped ${classes['table-bordered']}`}>
                     <thead>
                         <tr className={classes['main-heading']}>

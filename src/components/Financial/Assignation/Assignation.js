@@ -41,9 +41,9 @@ const Assignation = ({ year }) => {
                     </div>
                 </div>
             </div>
-            {offshoreTableShow && <FinancialTable assignationName={assignationName} year={year} />}
-            {onsiteTableShow && <FinancialTable assignationName={assignationName} year={year} />}
-            {bothTableShow && <FinancialTable assignationName={assignationName} year={year} />}
+            {offshoreTableShow && <FinancialTable assignationName={assignationName} year={year} offshoreTableShow={offshoreTableShow} onsiteTableShow={onsiteTableShow} bothTableShow={bothTableShow} />}
+            {onsiteTableShow && <FinancialTable assignationName={assignationName} year={year} offshoreTableShow={offshoreTableShow} onsiteTableShow={onsiteTableShow} bothTableShow={bothTableShow} />}
+            {bothTableShow && <FinancialTable assignationName={assignationName} year={year} offshoreTableShow={offshoreTableShow} onsiteTableShow={onsiteTableShow} bothTableShow={bothTableShow} />}
         </div>
     );
 };

@@ -6,6 +6,12 @@
     color: #5e85a5;
 }
 
+.link {
+    text-decoration: underline;
+    cursor: pointer;
+    float: right;
+}
+
 .main-heading {
     background-color: rgb(136, 138, 138);
     color: white;
