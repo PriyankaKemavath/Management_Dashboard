@@ -1,5 +1,4 @@
 .content {
-    border: 3px groove #a7a9aa;
     padding: 10px;
 }
 
@@ -13,4 +12,7 @@
 .active {
     background-color: #056fcc !important;
     color: white !important;
+}
+.table-bordered{
+    border: 5px solid #165079
 }
