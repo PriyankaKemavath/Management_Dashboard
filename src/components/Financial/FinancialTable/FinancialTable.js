@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ResourceModal from '../ResourceModal/ResourceModal';
+import ResourceModal from '../Resource/ResourceModal';
 
 import classes from './FinancialTable.module.css';
 
