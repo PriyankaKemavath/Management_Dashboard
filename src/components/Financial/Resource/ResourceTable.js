@@ -158,10 +158,23 @@ const ResourceTable = props => {
       selector: row => row.L4,
       sortable: true,
       hide: "md"
+    },
+    {
+      name: "Employee Group",
+      selector: row => row.employee_group,
+      sortable: true,
+      hide: "md"
+    },
+    {
+      name: "Employee Sub Group",
+      selector: row => row.employee_subgrp,
+      sortable: true,
+      hide: "md"
     }
   ];
 
   const [filterText, setFilterText] = React.useState("");
+  
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(
     false
   );

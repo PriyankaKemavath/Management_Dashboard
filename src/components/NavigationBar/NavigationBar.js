@@ -24,12 +24,9 @@ const NavigationBar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul className="navbar-nav ml-auto">
-                    <li className={`nav-item ${location.pathname === "/overview" && "active"}`}>
-                        <Link className="nav-link" to="/overview">Overview</Link>
+                    <li className={`nav-item ${location.pathname === "/dashboard-summary" && "active"}`}>
+                        <Link className="nav-link" to="/dashboard-summary">Dashboard Summary</Link>
                     </li>
-                   {/*  <li className={`nav-item ${location.pathname === "/nestle" && "active"}`}>
-                        <Link className="nav-link" to="/nestle">Nestle</Link>
-                    </li> */}
                     <li className={`nav-item dropdown ${location.pathname.includes("/financial") && "active"}`}>
                         <Link 
                             className="nav-link dropdown-toggle" 
@@ -47,6 +44,16 @@ const NavigationBar = () => {
                             <Link className="dropdown-item" to="/financial/CFS">CFS</Link>
                         </div>
                     </li>
+                    <li className={`nav-item ${location.pathname === "/forecast-revenue" && "active"}`}>
+                        <Link className="nav-link" to="/forecast-revenue">Forecast Revenue</Link>
+                    </li>
+                    <li className={`nav-item ${location.pathname === "/overview" && "active"}`}>
+                        <Link className="nav-link" to="/overview">Overview</Link>
+                    </li>
+                   {/*  <li className={`nav-item ${location.pathname === "/nestle" && "active"}`}>
+                        <Link className="nav-link" to="/nestle">Nestle</Link>
+                    </li> */}
+                    
                     {/* <li className={`nav-item ${location.pathname === "/demand-tracker" && "active"}`}>
                         <Link className="nav-link" to="/demand-tracker">Demand Management</Link>
                     </li>

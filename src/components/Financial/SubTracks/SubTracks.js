@@ -3,24 +3,45 @@ import Assignation from "../Assignation/Assignation";
 
 import classes from './SubTracks.module.css';
 
-const SubTracks = ({ showTitle, track }) => {
+const SubTracks = ({ showTitle, selectedTracks }) => {
     const [isAOSelected, setIsAOSelected] = useState(false);
     const [isADSelected, setIsADSelected] = useState(false);
     const [selectedYear, setSelectedYear] = useState();
     const [selectedQuarter, setSelectedQuarter] = useState();
     const [selectedMonth, setSelectedMonth] = useState();
     const [assignationShow, setAssignationShow] = useState(false);
+    const [selectedSubTracks, setSelectedSubTracks] = useState([]);
 
     const years = ["2021-22", "2020-21", "2019-20", "2018-19", "2017-18", "2016-17", "2015-16", "2014-15", "2013-14", "2012-13", "2011-12"];
     const quarters = ["Q1 - AMJ", "Q2 - JAS", "Q3 - OND", "Q4 - JFM"];
     const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 
     const aoHandler = () => {
+        if(!isAOSelected){
+            let object = selectedSubTracks.find((obj) => obj === "AO");
+            if(object === undefined) {
+                selectedSubTracks.push("AO");
+            }
+        } else {
+            let index = selectedSubTracks.findIndex((obj) => obj === "AO");
+            selectedSubTracks.splice(index, 1);
+        }     
+        setSelectedSubTracks(selectedSubTracks);
         setIsAOSelected(!isAOSelected);
-        setAssignationShow(false);
+        setAssignationShow(false); 
     };
 
     const adHandler = () => {
+        if(!isADSelected){
+            let object = selectedSubTracks.find((obj) => obj === "AD");
+            if(object === undefined) {
+                selectedSubTracks.push("AD");
+            }
+        } else {
+            let index = selectedSubTracks.findIndex((obj) => obj === "AD");
+            selectedSubTracks.splice(index, 1);
+        }
+        setSelectedSubTracks(selectedSubTracks);
         setIsADSelected(!isADSelected);
         setAssignationShow(false);
     };
@@ -36,23 +57,12 @@ const SubTracks = ({ showTitle, track }) => {
 
     const quarterHandler = (event) => {
         setSelectedQuarter(event.target.value);
-        //setSelectedMonth("Select");
-        /* if(event.target.value === "Select") {
-            setAssignationShow(false);
-        } else {
-            setAssignationShow(true);
-            setSelectedYear("2020-21");
-        } */
+        setSelectedMonth("");
     };
 
     const monthHandler = (event) => {
         setSelectedMonth(event.target.value);
-        /* if(event.target.value === "Select") {
-            setAssignationShow(false);
-        } else {
-            setAssignationShow(true);
-            setSelectedYear("2020-21");
-        } */
+        setSelectedQuarter("");
     };
 
     const yearsDropdown = (
@@ -68,7 +78,7 @@ const SubTracks = ({ showTitle, track }) => {
     
     const quarterDropdown = (
         <div>
-            <select name="quarter" onChange={quarterHandler}>
+            <select name="quarter" onChange={quarterHandler} value={selectedQuarter}>
                 <option value="Select">Select</option>
                 {quarters.map((quarter, index) => (
                     <option key={index} value={quarter}>{quarter}</option>
@@ -79,7 +89,7 @@ const SubTracks = ({ showTitle, track }) => {
 
     const monthDropdown = (
         <div>
-            <select name="month" onChange={monthHandler}>
+            <select name="month" onChange={monthHandler} value={selectedMonth}>
                 <option value="Select">Select</option>
                 {months.map((month, index) => (
                     <option key={index} value={month}>{month}</option>
@@ -153,7 +163,15 @@ const SubTracks = ({ showTitle, track }) => {
                         </div>
                         )}
                     </div>
-                    {assignationShow && <Assignation year={selectedYear} />}
+                    {assignationShow && (
+                        <Assignation 
+                            selectedTracks={selectedTracks} 
+                            selectedSubTracks={selectedSubTracks} 
+                            selectedYear={selectedYear} 
+                            selectedQuarter={selectedQuarter}
+                            selectedMonth={selectedMonth}
+                        />
+                    )}
                 </div>
             </div>
         </div>
