@@ -68,7 +68,7 @@ const Tracks = () => {
 
   return (
     <div className="container-fluid">
-      <h1 className={classes.title}>Financials</h1>
+      <h1 className={classes.title}>FINANCIALS</h1>
       <div className="row">
         <div className="col-md-3">
           <button 

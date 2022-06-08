@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { propTypes } from 'react-bootstrap/esm/Image';
 import ResourceModal from '../Resource/ResourceModal';
 
 import classes from './FinancialTable.module.css';
