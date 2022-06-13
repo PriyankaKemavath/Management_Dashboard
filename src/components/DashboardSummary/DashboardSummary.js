@@ -4,10 +4,10 @@ import classes from './DashboardSummary.module.css';
 
 const DashboardSummary = () => {
     return (
-       <div className="container">
+       <div className={`${classes.mainContainer}`}>
            <h1 className={classes.heading}>NESTLE TRACKS</h1>
            <div className="row">
-               <div className="col-md-4">
+               <div className={`col-md-4 pl-0 pr-0 ${classes.section}`}>
                     <div>
                         <div className={classes.center}>
                         <Link className={classes.link} to="/financial/ADI">
@@ -35,8 +35,8 @@ const DashboardSummary = () => {
                         </div>
                     </div>
                </div>
-               <div className="col-md-4">
-                    <div className={classes.verticalLine}>
+               <div className={`col-md-4 pl-0 pr-0 ${classes.section}`}>
+                    <div>
                         <div className={classes.center}>
                             <Link className={classes.link} to="/financial/MSE">
                                 <h1 className={classes.title}>MSE</h1>
@@ -55,8 +55,8 @@ const DashboardSummary = () => {
                         </div>
                     </div>
                </div>
-               <div className="col-md-4">
-                   <div className={classes.verticalLine}>
+               <div className={`col-md-4 pl-0 pr-0 ${classes.section}`}>
+                   <div>
                         <div className={classes.center}>
                             <Link className={classes.link} to="/financial/CFS">
                                 <h1 className={classes.title}>CFS</h1>
