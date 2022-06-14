@@ -1,0 +1,121 @@
+.heading {
+    color: #165079;
+    margin-bottom: 60px;
+    margin: 70px 0 100px;
+    font-size: 55px;
+}
+
+.mainContainer {
+    max-width: 80%;
+    margin: auto;
+    min-height: 800px;
+    /* border-left: thick solid #165079;
+    height: 100%;
+    padding-left: 8px; */
+}
+.section{
+    border-right: 3px solid #fbb900;
+    height: 500px;
+}
+.section:nth-child(2){
+    border-color: #cc60fc;
+}
+.section:last-child{
+    border-right: none;
+}
+
+.center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.link {
+    color: black;
+}
+
+.link:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.title {
+    width: 150px;
+    height: 50px;
+    border: 3px solid #165079;
+    font-size: 32px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    transition: 1s;
+    color:#165079;
+    
+}
+.title::before, .title::after {
+    position: absolute;
+    background: #FFF;
+    z-index: -1;
+    transition: 1s;
+    content: '';
+  }
+  .title::before {
+    height: 50px;
+    width: 130px;
+  }
+  
+  .title::after {
+    width: 150px;
+    height: 30px;
+  }
+  .title:hover::before {
+    width: 0px;
+    background: #fff;
+  }
+  
+  .title:hover::after {
+    height: 0px;
+    background: #fff;
+  }
+  
+  .title:hover {
+    background: #fff;
+  }
+
+.options {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.adiButton {
+    width: 110px;
+    font-weight: 600 !important;
+    font-size: 23px !important;
+    background-color: #fbb900 !important;
+    color: white !important;
+}
+
+.mseButton {
+    width: 110px;
+    font-weight: 600 !important;
+    font-size: 23px !important;
+    background-color: #cc60fc !important;
+    color: white !important;
+}
+
+.cfsButton {
+    width: 110px;
+    font-weight: 600 !important;
+    font-size: 23px !important;
+    background-color: #fa5920 !important;
+    color: white !important;
+}

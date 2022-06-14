@@ -8,6 +8,8 @@ import FulfillmentTracker from './components/FulfillmentTracker/FulfillmentTrack
 import Tracks from './components/Financial/Tracks/Tracks';
 import SubTracks from './components/Financial/SubTracks/SubTracks';
 import About from './components/About/About';
+import DashboardSummary from './components/DashboardSummary/DashboardSummary';
+import ForecastRevenue from './components/ForecastRevenue/ForecastRevenue';
 
 function App() {
 
@@ -17,6 +19,7 @@ function App() {
       <div className='App__Content'>
         <Routes>
           <Route path='/' element={<Navigate to='/overview' />} />
+          <Route path='/dashboard-summary' element={<DashboardSummary />} />
           <Route path='/overview' element={<Overview />} />
           <Route path='/nestle' element={<Nestle />} />
           <Route path='/demand-tracker' element={<DemandTracker />} />
@@ -25,6 +28,7 @@ function App() {
           <Route path="/financial/ADI" element={<Tracks />} />
           <Route path="/financial/MSE" element={<SubTracks showTitle={true} />} />
           <Route path="/financial/CFS" element={<SubTracks showTitle={true}/>} />
+          <Route path="/forecast-revenue" element={<ForecastRevenue />} />
           <Route path='/about' element={<About />} />
         </Routes>
       </div>
