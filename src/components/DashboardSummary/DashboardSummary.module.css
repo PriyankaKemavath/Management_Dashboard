@@ -6,7 +6,8 @@
 }
 
 .mainContainer {
-    max-width: 80%;
+    /* max-width: 80%; */
+    max-width: 90%;
     margin: auto;
     min-height: 800px;
     /* border-left: thick solid #165079;
