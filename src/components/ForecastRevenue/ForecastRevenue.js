@@ -1,27 +1,7 @@
 import { useState, useEffect } from "react";
-/* import CreateIcon from "@material-ui/icons/Create";
-import {
-  Box,
-  Button,
-  Snackbar,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from "@material-ui/core";
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import AddBoxIcon from "@material-ui/icons/AddBox";
-import DoneIcon from "@material-ui/icons/Done";
-import ClearIcon from "@material-ui/icons/Clear";
-import { makeStyles } from "@material-ui/core/styles";
-import Alert from "@material-ui/lab/Alert";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle"; */
 import { getResourceDetails } from "../../fetchers/getFetchers";
+
+import classes from "./ForecastRevenue.module.css";
 
 /* const useStyles = makeStyles({
   root: {
@@ -40,25 +20,22 @@ import { getResourceDetails } from "../../fetchers/getFetchers";
 }); */
 
 const ForecastRevenue = () => {
-  /* const classes = useStyles(); */
   const [rows, setRows] = useState([]);
   const [open, setOpen] = useState(false);
   const [isEdit, setEdit] = useState(false);
   const [disable, setDisable] = useState(true);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState();
 
   useEffect(() => {
     getResourceDetails()
       .then((responseData) => {
         setRows(responseData);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log("ERROR: ", error));
   }, []);
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const handleClose = () => {
     setOpen(false);
   };
 
@@ -108,9 +85,11 @@ const ForecastRevenue = () => {
   const handleSave = () => {
     setEdit(!isEdit);
     setRows(rows);
-    console.log("saved : ", rows);
     setDisable(true);
     setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 3000);
   };
 
   const handleInputChange = (e, index) => {
@@ -121,13 +100,14 @@ const ForecastRevenue = () => {
     setRows(list);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = (i) => {
+    setSelectedIndex(i);
     setShowConfirm(true);
   };
 
-  const handleRemoveClick = (i) => {
+  const handleRemoveClick = () => {
     const list = [...rows];
-    list.splice(i, 1);
+    list.splice(selectedIndex, 1);
     setRows(list);
     setShowConfirm(false);
   };
@@ -137,512 +117,387 @@ const ForecastRevenue = () => {
   };
 
   return (
-    <h3>Forecast Revenue</h3>
-    /* <TableBody>
-      <Snackbar
-        open={open}
-        autoHideDuration={2000}
-        onClose={handleClose}
-        className={classes.snackbar}
-      >
-        <Alert onClose={handleClose} severity="success">
+    <div className={classes.mainContainer}>
+      <h1 className={classes.heading}>FORECAST REVENUE</h1>
+      {open && (
+        <div className="alert alert-success alert-dismissible">
+          <button type="button" className="close" data-dismiss="alert" onClick={handleClose}>&times;</button>
           Record saved successfully!
-        </Alert>
-      </Snackbar>
-      <Box margin={1}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div>
-            {isEdit ? (
+        </div>
+      )}
+      <div>
+        {isEdit ? (
+          <div className={classes.actions}>
+            <button className="btn btn-info" onClick={handleAdd}>
+              {/* ADD ICON */}
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" fill="currentColor" className="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+              </svg>
+              <span className={classes.btnTitle}>&nbsp;ADD</span>
+            </button>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            {rows.length !== 0 && (
               <div>
-                <Button onClick={handleAdd}>
-                  <AddBoxIcon onClick={handleAdd} />
-                  ADD
-                </Button>
-                {rows.length !== 0 && (
-                  <div>
-                    {disable ? (
-                      <Button disabled align="right" onClick={handleSave}>
-                        <DoneIcon />
-                        SAVE
-                      </Button>
-                    ) : (
-                      <Button align="right" onClick={handleSave}>
-                        <DoneIcon />
-                        SAVE
-                      </Button>
-                    )}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div>
-                <Button onClick={handleAdd}>
-                  <AddBoxIcon onClick={handleAdd} />
-                  ADD
-                </Button>
-                <Button align="right" onClick={handleEdit}>
-                  <CreateIcon />
-                  EDIT
-                </Button>
+                {disable ? 
+                  (  
+                    <button className="btn btn-info" disabled onClick={handleSave}>
+                      {/* SAVE ICON */}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="23" height="25" fill="currentColor" className="bi bi-check-lg" viewBox="0 0 16 16">
+                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                      </svg>
+                      <span className={classes.btnTitle}>SAVE</span>
+                    </button>
+                  ) : (
+                    <button className="btn btn-success" onClick={handleSave}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="23" height="25" fill="currentColor" className="bi bi-check-lg" viewBox="0 0 16 16">
+                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                      </svg>
+                      <span className={classes.btnTitle}>SAVE</span>
+                    </button>
+                  )
+                }
               </div>
             )}
           </div>
+        ) : (
+          <div>
+            <button className="btn btn-info" onClick={handleAdd}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" fill="currentColor" className="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+              </svg>
+              <span className={classes.btnTitle}>&nbsp;ADD</span>
+            </button>&nbsp; &nbsp; &nbsp; &nbsp;
+            <button className="btn btn-info" onClick={handleEdit}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" fill="currentColor" className="bi bi-pencil-fill" viewBox="0 0 16 16">
+                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+              </svg>
+              <span className={classes.btnTitle}>&nbsp;EDIT</span>
+            </button>
+          </div>
+        )}
+        {showConfirm && (
+        <div className={`alert alert-info ${classes.dialog}`} role="alert">
+          <div>
+            <button type="button" className="close" onClick={handleNo}>&times;</button>
+            <h4>Confirm Delete</h4>
+          </div>
+          <p>Are you sure want to delete?</p>
+          <div>
+            <button className="btn btn-primary" style={{width: "100px"}} onClick={handleRemoveClick}>Yes</button>
+            &nbsp; &nbsp; &nbsp; 
+            <button className="btn btn-secondary" style={{width: "100px"}} onClick={handleNo}>No</button>
+          </div>
         </div>
-        <div style={{ width: "96vw", height: "65vh", overflowX: "auto" }}>
-          <Table
-            className={classes.table}
-            size="small"
-            aria-label="a dense table"
-            stickyHeader
-          >
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <strong>Employee ID</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Employee</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Employee L4 Org Unit</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Subgroup</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Customer ID</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Customer</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Project L1 Org Unit ID</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Project L1 Org Unit</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Project L2 Org Unit ID</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Project L2 Org Unit</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Project L3 Org Unit ID</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Project L3 Org Unit</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Project L4 Org Unit ID</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Project L4 Org Unit</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Component</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Project ID</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Project</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Total Cost</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Adj PM</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>GM</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Month</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Quarter</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>FY</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Mode</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>L2</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>L3</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>L4</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Employee Group</strong>
-                </TableCell>
-                <TableCell>
-                  <strong>Employee Subgroup</strong>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row, i) => {
-                return (
-                  <>
-                    <TableRow>
-                      {isEdit ? (
-                        <>
-                          <TableCell padding="none">
-                            <input
-                              value={row.employee_id}
-                              name="employee_id"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.employee}
-                              name="employee"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.employee_L4_org_unit}
-                              name="employee_L4_org_unit"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.employee_subgroup}
-                              name="employee_subgroup"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.customer_id}
-                              name="customer_id"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.customer}
-                              name="customer"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.project_L1_org_unit_id}
-                              name="project_L1_org_unit_id"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.project_L1_org_unit}
-                              name="project_L1_org_unit"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.project_L2_org_unit_id}
-                              name="project_L2_org_unit_id"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.project_L2_org_unit}
-                              name="project_L2_org_unit"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.project_L3_org_unit_id}
-                              name="project_L3_org_unit_id"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.project_L3_org_unit}
-                              name="project_L3_org_unit"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.project_L4_org_unit_id}
-                              name="project_L4_org_unit_id"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.project_L4_org_unit}
-                              name="project_L4_org_unit"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.component}
-                              name="component"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.project_id}
-                              name="project_id"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.project}
-                              name="project"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.total_cost}
-                              name="total_cost"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.adj_PM}
-                              name="adj_PM"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.GM}
-                              name="GM"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.month}
-                              name="month"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.quarter}
-                              name="quarter"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.FY}
-                              name="FY"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.mode}
-                              name="mode"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.L2}
-                              name="L2"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.L3}
-                              name="L3"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.L4}
-                              name="L4"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell padding="none">
-                            <input
-                              value={row.employee_group}
-                              name="employee_group"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-
-                          <TableCell padding="none">
-                            <input
-                              value={row.employee_subgrp}
-                              name="employee_subgrp"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                        </>
-                      ) : (
-                        <>
-                          <TableCell component="th" scope="row">
-                            {row.employee_id}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.employee}
-                          </TableCell>
-                          <TableCell component="th" scope="row" align="center">
-                            {row.employee_L4_org_unit}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.employee_subgroup}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.customer_id}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.customer}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.project_L1_org_unit_id}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.project_L1_org_unit}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.project_L2_org_unit_id}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.project_L2_org_unit}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.project_L3_org_unit_id}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.project_L3_org_unit}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.project_L4_org_unit_id}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.project_L4_org_unit}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.component}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.project_id}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.project}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.total_cost}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.adj_PM}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.GM}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.month}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.quarter}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.FY}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.mode}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.L2}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.L3}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.L4}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.employee_group}
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            {row.employee_subgrp}
-                          </TableCell>
-                          
-                        </>
-                      )}
-                      {isEdit ? (
-                        <Button className="mr10" onClick={handleConfirm}>
-                          <ClearIcon />
-                        </Button>
-                      ) : (
-                        <Button className="mr10" onClick={handleConfirm}>
-                          <DeleteOutlineIcon />
-                        </Button>
-                      )}
-                      {showConfirm && (
-                        <div>
-                          <Dialog
-                            open={showConfirm}
-                            onClose={handleNo}
-                            aria-labelledby="alert-dialog-title"
-                            aria-describedby="alert-dialog-description"
-                          >
-                            <DialogTitle id="alert-dialog-title">
-                              {"Confirm Delete"}
-                            </DialogTitle>
-                            <DialogContent>
-                              <DialogContentText id="alert-dialog-description">
-                                Are you sure to delete
-                              </DialogContentText>
-                            </DialogContent>
-                            <DialogActions>
-                              <Button
-                                onClick={() => handleRemoveClick(i)}
-                                color="primary"
-                                autoFocus
-                              >
-                                Yes
-                              </Button>
-                              <Button
-                                onClick={handleNo}
-                                color="primary"
-                                autoFocus
-                              >
-                                No
-                              </Button>
-                            </DialogActions>
-                          </Dialog>
-                        </div>
-                      )}
-                    </TableRow>
-                  </>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </div>
-      </Box>
-    </TableBody> */
+      )}
+      </div>
+      <br />
+      <div style={{ width: "96vw", height: "75vh", overflowX: "auto" }}>
+        <table className="table">
+          <thead className="thead-light">
+            <tr>
+              <th>Employee ID</th>
+              <th>Employee</th>
+              <th>Employee L4 Org Unit</th>
+              <th>Subgroup</th>
+              <th>Customer ID</th>
+              <th>Customer</th>
+              <th>Project L1 Org Unit ID</th>
+              <th>Project L1 Org Unit</th>
+              <th>Project L2 Org Unit ID</th>
+              <th>Project L2 Org Unit</th>
+              <th>Project L3 Org Unit ID</th>
+              <th>Project L3 Org Unit</th>
+              <th>Project L4 Org Unit ID</th>
+              <th>Project L4 Org Unit</th>
+              <th>Component</th>
+              <th>Project ID</th>
+              <th>Project</th>
+              <th>Total Cost</th>
+              <th>Adj PM</th>
+              <th>GM</th>
+              <th>Month</th>
+              <th>Quarter</th>
+              <th>FY</th>
+              <th>Mode</th>
+              <th>L2</th>
+              <th>L3</th>
+              <th>L4</th>
+              <th>Employee Group</th>
+              <th>Employee Subgroup</th>
+              <th>Delete Row</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, i) => {
+              return (
+                <tr key={i}>
+                  {isEdit ? (
+                    <>
+                      <td>
+                        <input
+                          value={row.employee_id}
+                          name="employee_id"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.employee}
+                          name="employee"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.employee_L4_org_unit}
+                          name="employee_L4_org_unit"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.employee_subgroup}
+                          name="employee_subgroup"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.customer_id}
+                          name="customer_id"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.customer}
+                          name="customer"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.project_L1_org_unit_id}
+                          name="project_L1_org_unit_id"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.project_L1_org_unit}
+                          name="project_L1_org_unit"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.project_L2_org_unit_id}
+                          name="project_L2_org_unit_id"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.project_L2_org_unit}
+                          name="project_L2_org_unit"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.project_L3_org_unit_id}
+                          name="project_L3_org_unit_id"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.project_L3_org_unit}
+                          name="project_L3_org_unit"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.project_L4_org_unit_id}
+                          name="project_L4_org_unit_id"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.project_L4_org_unit}
+                          name="project_L4_org_unit"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.component}
+                          name="component"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.project_id}
+                          name="project_id"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.project}
+                          name="project"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.total_cost}
+                          name="total_cost"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.adj_PM}
+                          name="adj_PM"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.GM}
+                          name="GM"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.month}
+                          name="month"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.quarter}
+                          name="quarter"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.FY}
+                          name="FY"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.mode}
+                          name="mode"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.L2}
+                          name="L2"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.L3}
+                          name="L3"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.L4}
+                          name="L4"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.employee_group}
+                          name="employee_group"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          value={row.employee_subgrp}
+                          name="employee_subgrp"
+                          onChange={(e) => handleInputChange(e, i)}
+                        />
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td>{row.employee_id}</td>
+                      <td>{row.employee}</td>
+                      <td align="center">{row.employee_L4_org_unit}</td>
+                      <td>{row.employee_subgroup}</td>
+                      <td>{row.customer_id}</td>
+                      <td>{row.customer}</td>
+                      <td>{row.project_L1_org_unit_id}</td>
+                      <td>{row.project_L1_org_unit}</td>
+                      <td>{row.project_L2_org_unit_id}</td>
+                      <td>{row.project_L2_org_unit}</td>
+                      <td>{row.project_L3_org_unit_id}</td>
+                      <td>{row.project_L3_org_unit}</td>
+                      <td>{row.project_L4_org_unit_id}</td>
+                      <td>{row.project_L4_org_unit}</td>
+                      <td>{row.component}</td>
+                      <td>{row.project_id}</td>
+                      <td>{row.project}</td>
+                      <td>{row.total_cost}</td>
+                      <td>{row.adj_PM}</td>
+                      <td>{row.GM}</td>
+                      <td>{row.month}</td>
+                      <td>{row.quarter}</td>
+                      <td>{row.FY}</td>
+                      <td>{row.mode}</td>
+                      <td>{row.L2}</td>
+                      <td>{row.L3}</td>
+                      <td>{row.L4}</td>
+                      <td>{row.employee_group}</td>
+                      <td>{row.employee_subgrp}</td>
+                    </>
+                  )}
+                  {isEdit ? 
+                    (
+                      <td>
+                        <button className="btn" onClick={() => handleConfirm(i)}>
+                          {/* CLEAR ICON */}
+                          <svg xmlns="http://www.w3.org/2000/svg" onClick={handleConfirm} width="17" height="20" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                          </svg>
+                        </button>
+                      </td>
+                    ) : (
+                      <td>
+                        <button className="btn" onClick={() => handleConfirm(i)}>
+                          {/* DELETE ICON */}
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" fill="currentColor" className="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                          </svg>
+                        </button>
+                      </td>
+                    )
+                  }
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 
