@@ -15,9 +15,16 @@ app.get('/', (req, res) => {
 app.get('/employee', (req, res) => {
     let rawdata = fs.readFileSync('./data/employeeRecords.json');
     let student = JSON.parse(rawdata);
-    console.log(student);
+    //console.log(student);
     res.send(student);
 });
+
+app.get('/projects', (req, res) => {
+    let rawData = fs.readFileSync('./data/projectDetails.json');
+    let projects = JSON.parse(rawData);
+    //console.log(projects);
+    res.send(projects);
+})
 
 // Section 4
 app.listen(3001, () => {

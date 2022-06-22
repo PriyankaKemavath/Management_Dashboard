@@ -6,14 +6,33 @@
 }
 
 .mainContainer {
-    /* max-width: 80%; */
     max-width: 90%;
     margin: auto;
     min-height: 800px;
-    /* border-left: thick solid #165079;
-    height: 100%;
-    padding-left: 8px; */
 }
+
+.link {
+    color: #165079;
+}
+
+.link:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+.spinner div {
+    height: 2rem !important;
+    width: 2rem !important;
+}
+
+/* 
 .section{
     border-right: 3px solid #fbb900;
     height: 500px;
@@ -119,4 +138,4 @@
     font-size: 23px !important;
     background-color: #fa5920 !important;
     color: white !important;
-}
+} */

@@ -43,3 +43,17 @@ button:disabled {
     z-index: 1; 
     border: 2px solid #165079;
 }
+
+.spinner {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    top: 40vh;
+    z-index: 9999;
+}
+
+.spinner div {
+    height: 2rem !important;
+    width: 2rem !important;
+}

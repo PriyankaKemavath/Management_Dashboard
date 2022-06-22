@@ -26,11 +26,14 @@ const ForecastRevenue = () => {
   const [disable, setDisable] = useState(true);
   const [showConfirm, setShowConfirm] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getResourceDetails()
       .then((responseData) => {
         setRows(responseData);
+        setIsLoading(false)
       })
       .catch((error) => console.log("ERROR: ", error));
   }, []);
@@ -191,6 +194,19 @@ const ForecastRevenue = () => {
       )}
       </div>
       <br />
+      {isLoading && (
+        <div className={classes.spinner}>
+          <div className="spinner-grow text-info" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+          <div className="spinner-grow text-info" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+          <div className="spinner-grow text-info" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+      )}
       <div style={{ width: "96vw", height: "75vh", overflowX: "auto" }}>
         <table className="table">
           <thead className="thead-light">
@@ -227,7 +243,7 @@ const ForecastRevenue = () => {
               <th>Delete Row</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody> 
             {rows.map((row, i) => {
               return (
                 <tr key={i}>

@@ -1,0 +1,98 @@
+[
+    {
+        "track": "ADI",
+        "sub_track": "AT",
+        "project": "ADLP Incubator",
+        "month": "1-Dec-21",
+        "revenue": 11655,
+        "cost":  5899  
+    },
+    {
+        "track": "ADI",
+        "sub_track": "DAPS",
+        "project": "AzureforAnalytics - BSE",
+        "month": "1-Dec-21",
+        "revenue": 774578,
+        "cost":  563994
+    },
+    {
+        "track": "ADI",
+        "sub_track": "BSI",
+        "project": "Cluster-2 AMS Steady State",
+        "month": "1-Dec-21",
+        "revenue": 690609,
+        "cost":  434462 
+    },
+    {
+        "track": "ADI",
+        "sub_track": "A4A",
+        "project": "ERW_Nestle_IFD",
+        "month": "1-Dec-21",
+        "revenue": 73446,
+        "cost": 40613
+    },
+    {
+        "track": "ADI",
+        "sub_track": "AT",
+        "project": "Nestle - Migration Services Low POD",
+        "month": "1-Dec-21",
+        "revenue": 64355,
+        "cost": 34662
+    },
+    {
+        "track": "ADI",
+        "sub_track": "BSI",
+        "project": "Nestle Cluster 2 Services_Transition",
+        "month": "1-Dec-21",
+        "revenue": 643558,
+        "cost": 460608
+    },
+    {
+        "track": "ADI",
+        "sub_track": "DAPS",
+        "project": "Nestle Cluster AD Services",
+        "month": "1-Dec-21",
+        "revenue":  1264517,
+        "cost": 657394 
+    },
+    {
+        "track": "ADI",
+        "sub_track": "AT",
+        "project": "Salary U/O Abs.",
+        "month":"1-Dec-21",
+        "revenue": 36451,
+        "cost": 9802
+    },
+    {
+        "track": "MSE",
+        "sub_track": "AO",
+        "project": "AzureforAnalytics - BSE",
+        "month":"1-Dec-21",
+        "revenue": 96451,
+        "cost": 56802
+    },
+    {
+        "track": "MSE",
+        "sub_track": "AD",
+        "project": "ADLP Incubator",
+        "month":"1-Dec-21",
+        "revenue": 26451,
+        "cost": 9802
+    },
+    {
+        "track": "CFS",
+        "sub_track": "AO",
+        "project": "Markets",
+        "month":"1-Dec-21",
+        "revenue": 936325,
+        "cost": 615802
+    },
+    {
+        "track": "CFS",
+        "sub_track": "AD",
+        "project": "Nestle Cluster 2 Services_Transition",
+        "month":"1-Dec-21",
+        "revenue": 36451,
+        "cost": 9802
+    }
+]
