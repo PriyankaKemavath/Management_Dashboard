@@ -28,7 +28,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "AT",
-        "employee_subgrp": "AO"
+        "employee_subgrp": "AO",
+        "revenue": 650.00
     },
     {
         "employee_id": 51762676,
@@ -59,7 +60,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "AT",
-        "employee_subgrp": "AD"
+        "employee_subgrp": "AD",
+        "revenue": 35.00
     },
     {
         "employee_id": 52009439,
@@ -90,7 +92,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "A4A",
-        "employee_subgrp": "AO"
+        "employee_subgrp": "AO",
+        "revenue": 380.00
     },
     {
         "employee_id": 51936813,
@@ -121,7 +124,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "A4A",
-        "employee_subgrp": "AD"
+        "employee_subgrp": "AD",
+        "revenue": 1010.00
     },
     {
         "employee_id": 52002839,
@@ -152,7 +156,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "DAPS",
-        "employee_subgrp": "AO"
+        "employee_subgrp": "AO",
+        "revenue": 6000.00
     },
     {
         "employee_id": 52023068,
@@ -183,7 +188,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "DAPS",
-        "employee_subgrp": "AD"
+        "employee_subgrp": "AD",
+        "revenue": 610.00
     },
     {
         "employee_id": 52009112,
@@ -214,7 +220,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "BSI",
-        "employee_subgrp": "AO"
+        "employee_subgrp": "AO",
+        "revenue": 420.00
     },
     {
         "employee_id": 51722486,
@@ -245,7 +252,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "AT",
-        "employee_subgrp": "AD"
+        "employee_subgrp": "AD",
+        "revenue": 1230.00
     },
     {
         "employee_id": 40130929,
@@ -276,7 +284,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "BSI",
-        "employee_subgrp": "AO"
+        "employee_subgrp": "AO",
+        "revenue": 269.00
     },
     {
         "employee_id": 51978949,
@@ -307,7 +316,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "DAPS",
-        "employee_subgrp": "AD"
+        "employee_subgrp": "AD",
+        "revenue": 923.00
     },
     {
         "employee_id": 51986108,
@@ -338,7 +348,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "AT",
-        "employee_subgrp": "AO"
+        "employee_subgrp": "AO",
+        "revenue": 8756.00
     },
     {
         "employee_id": 40186192,
@@ -369,7 +380,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "AT",
-        "employee_subgrp": "AD"
+        "employee_subgrp": "AD",
+        "revenue": 1825.00
     },
     {
         "employee_id": 52016773,
@@ -400,7 +412,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "BSI",
-        "employee_subgrp": "AO"
+        "employee_subgrp": "AO",
+        "revenue": 785.00
     },
     {
         "employee_id": 52007194,
@@ -431,7 +444,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "BSI",
-        "employee_subgrp": "AD"
+        "employee_subgrp": "AD",
+        "revenue": 4532.00
     },
     {
         "employee_id": 51911127,
@@ -462,7 +476,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "A4A",
-        "employee_subgrp": "AO"
+        "employee_subgrp": "AO",
+        "revenue": 1567.00
     },
     {
         "employee_id": 51998095,
@@ -493,7 +508,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "BSI",
-        "employee_subgrp": "AD"
+        "employee_subgrp": "AD",
+        "revenue": 19870.00
     },
     {
         "employee_id": 52023291,
@@ -524,7 +540,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "DAPS",
-        "employee_subgrp": "AO"
+        "employee_subgrp": "AO",
+        "revenue": 3821.00
     },
     {
         "employee_id": 52010443,
@@ -555,7 +572,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "AT",
-        "employee_subgrp": "AD"
+        "employee_subgrp": "AD",
+        "revenue": 18056.00
     },
     {
         "employee_id": 51876579,
@@ -586,7 +604,8 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "A4A",
-        "employee_subgrp": "AO"
+        "employee_subgrp": "AO",
+        "revenue": 1654.00
     },
     {
         "employee_id": 40203370,
@@ -617,6 +636,7 @@
         "L3": "EUROPE",
         "L4": "E-NESTLE",
         "employee_group": "DAPS",
-        "employee_subgrp": "AD"
+        "employee_subgrp": "AD",
+        "revenue": 478.00
     }
 ]

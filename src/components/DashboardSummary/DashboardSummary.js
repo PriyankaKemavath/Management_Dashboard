@@ -78,7 +78,7 @@ const DashboardSummary = () => {
                                                             aria-valuemax="100" 
                                                             style={{width: `${Math.round(((obj.cost)/obj.revenue)*100, 2)}%`}}
                                                         >
-                                                            {obj.cost}
+                                                            <span data-toggle="tooltip" data-placement="top" title={obj.cost}>{obj.cost}</span>
                                                         </div>  
                                                         <span className="d-flex align-items-center ml-2">{obj.revenue}</span> 
                                                     </div>
@@ -94,6 +94,7 @@ const DashboardSummary = () => {
                 </table>
             </div>
         </div>
+
        /* <div className={`${classes.mainContainer}`}>
            <h1 className={classes.heading}>NESTLE TRACKS</h1>
            <div className="row">
@@ -167,6 +168,7 @@ const DashboardSummary = () => {
                </div>
            </div>
        </div> */
+       
     );
 };
 

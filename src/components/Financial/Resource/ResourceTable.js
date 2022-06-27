@@ -1,8 +1,9 @@
-import React, { useMemo } from "react";
+import React, { /* useEffect, */ useMemo } from "react";
 import DataTable from "react-data-table-component";
 import FilterComponent from "./FilterComponent";
 
-const ResourceTable = props => {
+const ResourceTable = ({ resources/* , sendFinancialData */ }) => {
+
   const columns = [
     {
       name: "Employee Id",
@@ -179,7 +180,7 @@ const ResourceTable = props => {
     false
   );
 
-  const filteredItems = props.data.filter(
+  const filteredItems = resources.filter(
     item =>
       JSON.stringify(item)
         .toLowerCase()
@@ -203,6 +204,10 @@ const ResourceTable = props => {
     );
   }, [filterText, resetPaginationToggle]);
 
+  /* useEffect(() => {
+    sendFinancialData(filteredItems);
+  }, [sendFinancialData, filteredItems]);
+ */
   return (
     <DataTable
       /* title="Resource List" */

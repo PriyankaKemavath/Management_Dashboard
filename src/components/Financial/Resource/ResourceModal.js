@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+/* import { useState, useEffect } from 'react'; */
 import { Modal, Container } from 'react-bootstrap';
-import { getResourceDetails } from '../../../fetchers/getFetchers';
+/* import { getResourceDetails } from '../../../fetchers/getFetchers'; */
 import ResourceTable from './ResourceTable';
 
 import classes from '../FinancialTable/FinancialTable.module.css';
 
 const ResourceModal = (props) => {
-  const { resourceShow, resourceCloseHandler, selectedTracks, selectedSubTracks, selectedYear, selectedQuarter, selectedMonth, offshoreTableShow, onsiteTableShow, bothTableShow } = props;
-  
-  const [data, setData] = useState([]);
+  /* const { resourceShow, resourceCloseHandler, selectedTracks, selectedSubTracks, selectedYear, selectedQuarter, selectedMonth, offshoreTableShow, onsiteTableShow, bothTableShow, sendFinancialData } = props; */
+  const { resourceShow, resourceCloseHandler, offshoreTableShow, onsiteTableShow, resources/* , sendFinancialData */ } = props;
+  /* const [data, setData] = useState([]);
   const [resources, setResources] = useState([]);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const ResourceModal = (props) => {
     if(bothTableShow) {
       setResources(data);
     }
-  }, [data, offshoreTableShow, onsiteTableShow, bothTableShow]);
+  }, [data, offshoreTableShow, onsiteTableShow, bothTableShow]); */
     
   return (
     <Modal size="xl" show={resourceShow} onHide={resourceCloseHandler}>
@@ -78,7 +78,7 @@ const ResourceModal = (props) => {
       </Modal.Header>
       <Modal.Body>
         <Container>
-          <ResourceTable data={resources} />
+          <ResourceTable resources={resources} /* sendFinancialData={sendFinancialData} */ />
         </Container>
       </Modal.Body>
     </Modal>

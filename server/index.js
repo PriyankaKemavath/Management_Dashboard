@@ -22,7 +22,7 @@ app.get('/employee', (req, res) => {
 app.get('/projects', (req, res) => {
     let rawData = fs.readFileSync('./data/projectDetails.json');
     let projects = JSON.parse(rawData);
-    //console.log(projects);
+    console.log(projects);
     res.send(projects);
 })
 
