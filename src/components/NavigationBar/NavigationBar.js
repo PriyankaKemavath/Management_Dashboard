@@ -47,9 +47,9 @@ const NavigationBar = () => {
                     <li className={`nav-item ${location.pathname === "/forecast-revenue" && "active"}`}>
                         <Link className="nav-link" to="/forecast-revenue">Forecast Revenue</Link>
                     </li>
-                    <li className={`nav-item ${location.pathname === "/overview" && "active"}`}>
+                    {/* <li className={`nav-item ${location.pathname === "/overview" && "active"}`}>
                         <Link className="nav-link" to="/overview">Overview</Link>
-                    </li>
+                    </li> */}
                    {/*  <li className={`nav-item ${location.pathname === "/nestle" && "active"}`}>
                         <Link className="nav-link" to="/nestle">Nestle</Link>
                     </li> */}

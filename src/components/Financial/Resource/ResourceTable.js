@@ -1,8 +1,8 @@
-import React, { /* useEffect, */ useMemo } from "react";
+import React, { useMemo } from "react";
 import DataTable from "react-data-table-component";
 import FilterComponent from "./FilterComponent";
 
-const ResourceTable = ({ resources/* , sendFinancialData */ }) => {
+const ResourceTable = ({ resources }) => {
 
   const columns = [
     {
@@ -204,13 +204,8 @@ const ResourceTable = ({ resources/* , sendFinancialData */ }) => {
     );
   }, [filterText, resetPaginationToggle]);
 
-  /* useEffect(() => {
-    sendFinancialData(filteredItems);
-  }, [sendFinancialData, filteredItems]);
- */
   return (
     <DataTable
-      /* title="Resource List" */
       columns={columns}
       data={filteredItems}
       defaultSortField="employee-id"

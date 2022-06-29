@@ -1,23 +1,8 @@
 import { useState, useEffect } from "react";
 import { getResourceDetails } from "../../fetchers/getFetchers";
+import Error from "../Error/Error";
 
 import classes from "./ForecastRevenue.module.css";
-
-/* const useStyles = makeStyles({
-  root: {
-    "& > *": {
-      borderBottom: "unset",
-    },
-    width: "100%",
-    overflowX: "auto",
-  },
-  table: {
-    minWidth: 650,
-  },
-  snackbar: {
-    bottom: "104px",
-  },
-}); */
 
 const ForecastRevenue = () => {
   const [rows, setRows] = useState([]);
@@ -27,6 +12,7 @@ const ForecastRevenue = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
 
   useEffect(() => {
     setIsLoading(true);
@@ -35,7 +21,10 @@ const ForecastRevenue = () => {
         setRows(responseData);
         setIsLoading(false)
       })
-      .catch((error) => console.log("ERROR: ", error));
+      .catch((error) => {
+        console.log("ERROR: ", error);
+        setError(error.message);
+      });
   }, []);
 
   const handleClose = () => {
@@ -118,6 +107,10 @@ const ForecastRevenue = () => {
   const handleNo = () => {
     setShowConfirm(false);
   };
+
+  if (error || !Array.isArray(rows)) {
+    return <Error errorMessage={error} />;
+  }
 
   return (
     <div className={classes.mainContainer}>

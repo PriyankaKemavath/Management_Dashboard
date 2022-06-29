@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getProjectDetails } from '../../fetchers/getFetchers';
+import Error from '../Error/Error';
+import Loading from '../Loading/Loading';
 
 import classes from './DashboardSummary.module.css';
 
@@ -8,6 +10,7 @@ const DashboardSummary = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState([]);
     const [tracks, setTracks] = useState([]);
+    const [error, setError] = useState();
 
     useEffect(() => {
         setIsLoading(true);
@@ -17,25 +20,20 @@ const DashboardSummary = () => {
                 .filter((item, index, arr) =>  arr.indexOf(item) === index);
             setTracks(filteredTracks);
             setIsLoading(false);
+        }).catch((error) => {
+            console.log("Error: ", error);
+            setError(error.message);
         });
     }, []);
+
+    if(error || !Array.isArray(data)) {
+        return <Error errorMessage={error} />;
+    }
 
     return (
         <div className={classes.mainContainer}>
             <h1 className={classes.heading}>NESTLE TRACKS</h1>
-            {isLoading && (
-                <div className={classes.spinner}>
-                    <div className="spinner-grow text-info" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>
-                    <div className="spinner-grow text-info" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>
-                    <div className="spinner-grow text-info" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>
-              </div>
-            )}
+            {isLoading && <Loading />}
             <div className="row">
                 <table className="table">
                     {tracks.map((track, index) => (
@@ -73,17 +71,17 @@ const DashboardSummary = () => {
                                                         <div 
                                                             className="progress-bar progress-bar-striped progress-bar-animated" 
                                                             role="progressbar" 
-                                                            aria-valuenow={Math.round(((obj.cost)/obj.revenue)*100, 2)}
+                                                            aria-valuenow={Math.round(((obj.cost)/obj.revenue)*100)}
                                                             aria-valuemin="0" 
                                                             aria-valuemax="100" 
-                                                            style={{width: `${Math.round(((obj.cost)/obj.revenue)*100, 2)}%`}}
+                                                            style={{width: `${Math.round(((obj.cost)/obj.revenue)*100)}%`}}
                                                         >
                                                             <span data-toggle="tooltip" data-placement="top" title={obj.cost}>{obj.cost}</span>
                                                         </div>  
                                                         <span className="d-flex align-items-center ml-2">{obj.revenue}</span> 
                                                     </div>
                                                 </td>
-                                                <td>{Math.round(((obj.revenue - obj.cost)/obj.revenue)*100, 2)}%</td>
+                                                <td>{Math.round(((obj.revenue - obj.cost)/obj.revenue)*100)}%</td>
                                             </tr>
                                         )
                                     }
@@ -94,81 +92,6 @@ const DashboardSummary = () => {
                 </table>
             </div>
         </div>
-
-       /* <div className={`${classes.mainContainer}`}>
-           <h1 className={classes.heading}>NESTLE TRACKS</h1>
-           <div className="row">
-               <div className={`col-md-4 pl-0 pr-0 ${classes.section}`}>
-                    <div>
-                        <div className={classes.center}>
-                        <Link className={classes.link} to="/financial/ADI">
-                            <h1 className={classes.title}>ADI</h1>
-                        </Link>
-                        </div>
-                        <div className={`row ${classes.options}`}>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.adiButton}`}>AT</button>
-                            </div>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.adiButton}`}>DAPS</button>
-                            </div>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.adiButton}`}>BSI</button>
-                            </div>
-                        </div>
-                        <div className={`row ${classes.options}`}>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.adiButton}`}>A4A</button>
-                            </div>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.adiButton}`}>Markets</button>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-               <div className={`col-md-4 pl-0 pr-0 ${classes.section}`}>
-                    <div>
-                        <div className={classes.center}>
-                            <Link className={classes.link} to="/financial/MSE">
-                                <h1 className={classes.title}>MSE</h1>
-                            </Link>
-                        </div>
-                        <div className={`row ${classes.options}`}>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.mseButton}`}>AO</button>
-                            </div>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.mseButton}`}>AD</button>
-                            </div>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.mseButton}`}>Markets</button>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-               <div className={`col-md-4 pl-0 pr-0 ${classes.section}`}>
-                   <div>
-                        <div className={classes.center}>
-                            <Link className={classes.link} to="/financial/CFS">
-                                <h1 className={classes.title}>CFS</h1>
-                            </Link>
-                        </div>
-                        <div className={`row ${classes.options}`}>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.cfsButton}`}>AO</button>
-                            </div>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.cfsButton}`}>AD</button>
-                            </div>
-                            <div className='col-md-4'>
-                                <button className={`btn ${classes.cfsButton}`}>Markets</button>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-           </div>
-       </div> */
-       
     );
 };
 

@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import NavigationBar from './components/NavigationBar/NavigationBar';
-import Overview from './components/Overview/Overview';
 import Nestle from './components/Nestle/Nestle';
 import DemandTracker from './components/DemandTracker/DemandTracker';
 import RASReport from './components/RASReport/RASReport';
@@ -18,9 +17,8 @@ function App() {
       <NavigationBar />
       <div className='App__Content'>
         <Routes>
-          <Route path='/' element={<Navigate to='/overview' />} />
+          <Route path='/' element={<Navigate to='/dashboard-summary' />} />
           <Route path='/dashboard-summary' element={<DashboardSummary />} />
-          <Route path='/overview' element={<Overview />} />
           <Route path='/nestle' element={<Nestle />} />
           <Route path='/demand-tracker' element={<DemandTracker />} />
           <Route path='/ras-report' element={<RASReport />} />
