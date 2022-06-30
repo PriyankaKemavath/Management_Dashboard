@@ -1,5 +1,6 @@
 .content {
     padding: 10px;
+    min-height: 800px;
 }
 
 .button {
@@ -11,8 +12,9 @@
 
 .active {
     background-color: #056fcc !important;
-    color: white !important;
+    color: rgb(248, 201, 201) !important;
 }
+
 .table-bordered{
     border: 5px solid #165079
 }

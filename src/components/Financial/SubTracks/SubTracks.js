@@ -29,6 +29,9 @@ const SubTracks = ({ showTitle, selectedTracks }) => {
         setSelectedSubTracks(selectedSubTracks);
         setIsAOSelected(!isAOSelected);
         setAssignationShow(false); 
+        setSelectedYear("");
+        setSelectedQuarter("");
+        setSelectedMonth("");
     };
 
     const adHandler = () => {
@@ -44,6 +47,9 @@ const SubTracks = ({ showTitle, selectedTracks }) => {
         setSelectedSubTracks(selectedSubTracks);
         setIsADSelected(!isADSelected);
         setAssignationShow(false);
+        setSelectedYear("");
+        setSelectedQuarter("");
+        setSelectedMonth("");
     };
 
     const yearHandler = (event) => {
@@ -67,7 +73,7 @@ const SubTracks = ({ showTitle, selectedTracks }) => {
 
     const yearsDropdown = (
         <div>
-            <select name="years" onChange={yearHandler}>
+            <select name="years" onChange={yearHandler} value={selectedYear}>
                 <option value="Select">Select</option>
                 {years.map((year, index) => (
                     <option key={index} value={year}>{year}</option>
@@ -99,8 +105,8 @@ const SubTracks = ({ showTitle, selectedTracks }) => {
     );
 
     return (
-        <div className="container">
-            {showTitle && <h1 className={classes.title}>Financials</h1>}
+        <div className={`container ${classes.mainContainer}`}>
+            {showTitle && <h1 className={classes.title}>FINANCIALS</h1>}
             <div className={`container ${classes.subtrack}`}>
                 <div className="container row d-flex align-items-center">
                     <div className="col-md-6">

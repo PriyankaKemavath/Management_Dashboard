@@ -26,6 +26,7 @@ code {
   background-color: #165079 ;
   width: 100%;
   color: whitesmoke;
+  padding: 5px 0 5px 0;
 }
 
 input[type=checkbox].hidden{

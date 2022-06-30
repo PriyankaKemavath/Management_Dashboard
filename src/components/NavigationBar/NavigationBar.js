@@ -8,7 +8,7 @@ const NavigationBar = () => {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark">
-            <Link className={classes['img-link']} to="/">
+            <Link className={classes['img-link']} to="/dashboard-summary">
                 <img className={classes.logo} src={logo} alt="Nestle.png" />
             </Link>
             <button 
@@ -47,21 +47,8 @@ const NavigationBar = () => {
                     <li className={`nav-item ${location.pathname === "/forecast-revenue" && "active"}`}>
                         <Link className="nav-link" to="/forecast-revenue">Forecast Revenue</Link>
                     </li>
-                    {/* <li className={`nav-item ${location.pathname === "/overview" && "active"}`}>
-                        <Link className="nav-link" to="/overview">Overview</Link>
-                    </li> */}
-                   {/*  <li className={`nav-item ${location.pathname === "/nestle" && "active"}`}>
-                        <Link className="nav-link" to="/nestle">Nestle</Link>
-                    </li> */}
-                    
-                    {/* <li className={`nav-item ${location.pathname === "/demand-tracker" && "active"}`}>
-                        <Link className="nav-link" to="/demand-tracker">Demand Management</Link>
-                    </li>
-                    <li className={`nav-item ${location.pathname === "/ras-report" && "active"}`}>
-                        <Link className="nav-link" to="/ras-report">Abouters</Link>
-                    </li> */}
-                    <li className={`nav-item ${location.pathname === "/about" && "active"}`}>
-                        <Link className="nav-link" to="/about">About</Link>
+                    <li className={`nav-item ${location.pathname === "/about-us" && "active"}`}>
+                        <Link className="nav-link" to="/about-us">About Us</Link>
                     </li>
                 </ul>
             </div>

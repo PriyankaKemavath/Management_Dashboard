@@ -34,7 +34,7 @@ const DashboardSummary = () => {
         <div className={classes.mainContainer}>
             <h1 className={classes.heading}>NESTLE TRACKS</h1>
             {isLoading && <Loading />}
-            <div className="row">
+            <div className={`row ${classes.trackTable}`}>
                 <table className="table">
                     {tracks.map((track, index) => (
                         <Fragment key={index}>

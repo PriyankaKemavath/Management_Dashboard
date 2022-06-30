@@ -67,7 +67,7 @@ const Tracks = () => {
   };
 
   return (
-    <div className="container-fluid">
+    <div className={`container-fluid ${classes.mainContainer}`}>
       <h1 className={classes.title}>FINANCIALS</h1>
       <div className="row">
         <div className="col-md-3">
