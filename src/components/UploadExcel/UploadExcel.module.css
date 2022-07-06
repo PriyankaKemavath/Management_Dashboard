@@ -10,15 +10,9 @@
 }
 
 .excelData {
-    padding-top: 80px;
+    margin-top: 80px;
 }
 
 .fileName {
     color: rgb(18, 123, 192);
-}
-
-.excelTableData { 
-    width: 85vw;
-    height: 75vh;
-    overflow-x: auto;
 }

@@ -62,22 +62,23 @@ const UploadExcel = () => {
 
     return (
         <div className={`container ${classes.mainContainer}`}>
-            <h1 className={classes.heading}>UPLOAD EXCEL</h1>
+            <h1 className={classes.heading}>ADD RESOURCE DETAILS</h1>
             <div className="row">
-                <div className="col-md-12">
-                    <form>
-                        <div className="form-group">
-                            <label htmlFor="upload-excel">Upload Excel File: &nbsp;</label>
-                            <input type="file" id="upload-excel" ref={fileInputRef} accept='.xls, .xlsx, .csv' onChange={fileChangeHandler} />
-                            <button className="btn btn-primary" type="submit" disabled={!isFileUploaded} onClick={submitHandler}>Upload</button>
-                        </div>
-                    </form>
+                <div className="form-group col-md-12">
+                    <label htmlFor="upload-excel">Upload File: &nbsp;</label>
+                    <input type="file" id="upload-excel" ref={fileInputRef} accept='.xls, .xlsx, .csv' onChange={fileChangeHandler} />     
+                    <h6 className="text-info">(Accepts only .csv, .xls files)</h6>
+                </div>
+            </div>
+            <div className="row">
+                <div className="form-group col-md-12">
+                    <button className="btn btn-primary" type="submit" disabled={!isFileUploaded} onClick={submitHandler}>Upload</button>
                 </div>
             </div>
             {fileData && (
                 <div className={classes.excelData}>
                     <h3>Uploaded <span className={classes.fileName}>{fileName}</span> excel data</h3><br />
-                    <div className={classes.excelTableData}>
+                    <div style={{ width: "80vw", height: "68vh", overflowX: "auto" }}>
                         <table className="table table-bordered">
                             <thead className="thead-light">
                                 <tr>{tableHead}</tr>

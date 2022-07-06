@@ -51,7 +51,7 @@ const NavigationBar = () => {
                         <Link className="nav-link" to="/about-us">About Us</Link>
                     </li>
                     <li className={`nav-item ${location.pathname === "/upload-excel" && "active"}`}>
-                        <Link className="nav-link" to="/upload-excel">Upload Excel</Link>
+                        <Link className="nav-link" to="/upload-excel">Add Details</Link>
                     </li>
                 </ul>
             </div>
